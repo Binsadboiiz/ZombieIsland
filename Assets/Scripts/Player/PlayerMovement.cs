@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -20,6 +21,7 @@ public class PlayerMovement : MonoBehaviour
     private float horizontalInput;
     private float verticalInput;
     private bool isSprinting;
+    private bool isJumping;
 
     private bool isGrounded;
 
@@ -111,11 +113,22 @@ public class PlayerMovement : MonoBehaviour
 
     private void HandleJump()
     {
-        if(Input.GetKeyDown(KeyCode.Space) && isGrounded)
+        if (Input.GetKeyDown(KeyCode.Space) && isGrounded && !isJumping)
         {
-            rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
-            animator.SetTrigger("jumping");
+            StartCoroutine(JumpRoutine());
         }
+    }
+
+    private IEnumerator JumpRoutine()
+    {
+        isJumping = true;
+        animator.SetTrigger("jumping");
+
+        yield return new WaitForSeconds(0.62f);
+
+        rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+
+        isGrounded = false;
     }
 
     private void HandleSprint()
@@ -134,5 +147,14 @@ public class PlayerMovement : MonoBehaviour
         Vector3 origin = groundCheck.position;
 
         Gizmos.DrawLine(origin, origin + Vector3.down * groundCheckDistance);
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Ground"))
+        {
+            isGrounded = true;
+            isJumping = false;
+        }
     }
 }
