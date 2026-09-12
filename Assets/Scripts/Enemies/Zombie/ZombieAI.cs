@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 
+//bộ não xử lý hành vi của zombie
 public class ZombieAI : MonoBehaviour
 {
     [SerializeField] private Transform playerTransform;
@@ -10,9 +11,14 @@ public class ZombieAI : MonoBehaviour
     //biến lưu trạng thái debug, tránh spam log (bool mặc định lưu false)
     private bool wasPlayerDetected;
 
+    private ZombieAttack zombieAttack;
+
+    [SerializeField] private float attackRange;
+
     private void Awake()
     {
         zombieMovement = gameObject.GetComponent<ZombieMovement>();
+        zombieAttack = gameObject.GetComponent<ZombieAttack>();
     }
 
     private void DetectPlayer()
@@ -48,11 +54,22 @@ public class ZombieAI : MonoBehaviour
         if (isPlayerDetected)
         {
             targetTransform = playerTransform;
-            zombieMovement.MoveTo(targetTransform.position);
+            zombieAttack.SetTarget(targetTransform);
+
+            //kiểm tra đã có thể tấn công chưa
+            if (distance <= attackRange)
+            {
+                zombieMovement.StopMove();
+                zombieAttack.Attack();
+            } else
+            {
+                zombieMovement.MoveTo(playerPosition);
+            }
         }
         else
         {
             targetTransform = null;
+            zombieAttack.SetTarget(null);
             zombieMovement.StopMove();
         }
     }
