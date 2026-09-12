@@ -10,8 +10,6 @@ public class CameraController : MonoBehaviour
     [SerializeField] private Transform player;
 
     [Header("Aim Settings")]
-    [SerializeField] private float aimDistance = 1.5f;
-    [SerializeField] private float aimHeight = 0.5f;
     [SerializeField] private float aimFOV = 45f;
     [SerializeField] private float normalFOV = 60f;
     [SerializeField] private float fovSmoothSpeed = 10f;
@@ -101,7 +99,7 @@ public class CameraController : MonoBehaviour
 
     private void HandleFOV()
     {
-        float targetFOV = playerAim.IsAiming ? 45f : 60F;
+        float targetFOV = playerAim.IsAiming ? aimFOV : normalFOV;
 
         cam.fieldOfView = Mathf.Lerp(cam.fieldOfView, targetFOV, fovSmoothSpeed * Time.deltaTime);
     }
