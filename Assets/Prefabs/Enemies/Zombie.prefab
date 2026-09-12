@@ -125,10 +125,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 8502633050995072318}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f214eced2a0bd604bb929fb5cbf067d0, type: 3}
+  m_Script: {fileID: 11500000, guid: 4364f66d0f55251439c498d2b18dee7c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ZombieHealth
-  maxHealth: 100
+  playerTransform: {fileID: 5649978463367752217}
+  detectionRange: 0
 --- !u!114 &5190691365920881784
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -138,11 +139,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 8502633050995072318}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 997a0792269859949a47ea60cdff33dd, type: 3}
+  m_Script: {fileID: 11500000, guid: 721fd1fcac3d83e439db3979d6e6ad19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ZombieMovement
-  movementSpeed: 1
-  targetTransform: {fileID: 0}
 --- !u!114 &3840349045457662413
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -152,7 +151,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 8502633050995072318}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f214eced2a0bd604bb929fb5cbf067d0, type: 3}
+  m_Script: {fileID: 11500000, guid: 9fd6532546cad88439301d1ee1e245c8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ZombieHealth
   maxHealth: 100
@@ -165,6 +164,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 8502633050995072318}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b4a5022b685ffbd4694b25528b6cb351, type: 3}
+  m_Script: {fileID: 11500000, guid: b0dab0af23c4fcd45b465825ec21ff71, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ZombieDeath
+  movementSpeed: 1
