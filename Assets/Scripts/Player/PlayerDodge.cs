@@ -41,7 +41,7 @@ public class PlayerDodge : MonoBehaviour
 
         animator.SetTrigger("Dodging");
 
-        yield return new WaitForSeconds(1.65f);
+        yield return new WaitForSeconds(1.63f);
 
         Vector3 startPosition = transform.position;
         Vector3 targetPosition = startPosition + direction * dodgeDistance;
